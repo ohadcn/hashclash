@@ -12,7 +12,7 @@
 *.so
 *.dylib
 *.dll
-
+*.so.*
 # Fortran module files
 *.mod
 
@@ -26,3 +26,12 @@
 *.exe
 *.out
 *.app
+
+#eclipse files
+.settings
+.project
+.cproject
+
+#misc
+.svn
+
