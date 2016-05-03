@@ -1,0 +1,29 @@
+ARCH=$(shell arch)
+ifeq ($(ARCH),armv7l)
+TARGET ?= rpi2
+endif
+TARGET ?= x86
+
+CXX ?= g++
+
+CXXFLAGS  ?= -O2 -g
+CXXFLAGS  += -I ../../lib
+LINKFLAGS += -L ../../bin/.libs
+ifdef GCCLOCAL
+CXXFLAGS  += -I ${GCCLOCAL}/include
+LINKFLAGS += -L ${GCCLOCAL}/lib
+endif
+
+ifeq ($(TARGET),rpi2)
+endif
+
+ifeq ($(TARGET),x86)
+TARGETCFLAGS ?= -march=native -std=c++11
+endif
+
+CXXFLAGS+= $(TARGETCFLAGS)
+LINKFLAGS+= $(TARGETCFLAGS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -I. -I.. -c $<
+
